@@ -6,7 +6,7 @@
     <title>Yes or No</title>
     <style>
         body {
-            background-color: white;
+            background-color: #f1c8c4; /* Updated background color */
             text-align: center;
             margin-top: 20%;
             position: relative;
@@ -33,7 +33,15 @@
         h1 {
             font-size: 24px;
             margin-bottom: 20px;
-            text-align: center; /* Ensures horizontal centering */
+            text-align: center;
+        }
+        #imageContainer {
+            margin-top: 5px; /* Increased margin-top to move the image down */
+        }
+        img {
+            width: 400px; /* You can adjust this to change the image size */
+            height: auto;
+            margin-top: 20px; /* Adds space between the buttons and the image */
         }
     </style>
     <script>
@@ -61,5 +69,11 @@
     <div id="notification"></div>
     <button id="yesButton" onclick="showMessage('You clicked Yes!')">Yes</button>
     <button id="noButton" onclick="moveNoButton()">No</button>
+
+    <!-- Image Section -->
+    <div id="imageContainer">
+        <img src="https://static.vecteezy.com/system/resources/previews/024/758/856/non_2x/cute-and-lovely-penguin-with-cup-happy-valentine-s-day-love-concept-flat-illustration-cartoon-character-costume-design-vector.jpg" alt="Valentine's Image">
+    </div>
 </body>
 </html>
+
