@@ -45,29 +45,56 @@
         }
     </style>
     <script>
+        let yesButtonClicked = 0;
+        let noButtonClicked = 0;
+
         function showMessage(message) {
             var notification = document.getElementById("notification");
             notification.innerText = message;
             notification.style.display = "block";
         }
+
         function moveNoButton() {
-            var noButton = document.getElementById("noButton");
-            var currentLeft = noButton.offsetLeft;
-            var currentTop = noButton.offsetTop;
-            var moveX = (Math.random() * 150) - 75; // Moves more left or right
-            var moveY = (Math.random() * 150) - 75; // Moves more up or down
-            var newLeft = Math.min(window.innerWidth - noButton.offsetWidth, Math.max(0, currentLeft + moveX));
-            var newTop = Math.min(window.innerHeight - noButton.offsetHeight - 100, Math.max(100, currentTop + moveY));
-            noButton.style.left = newLeft + "px";
-            noButton.style.top = newTop + "px";
-            showMessage("Oops! looks like the button dodged just in time");
+            noButtonClicked++; // Increment the No button counter
+
+            if (noButtonClicked === 10) {
+                // Hide the No button and show the notification
+                var noButton = document.getElementById("noButton");
+                noButton.style.display = "none"; // Hide the No button
+                showMessage("na ennyi elég is"); // Show the notification
+            } else {
+                var noButton = document.getElementById("noButton");
+                var currentLeft = noButton.offsetLeft;
+                var currentTop = noButton.offsetTop;
+                var moveX = (Math.random() * 150) - 75; // Moves more left or right
+                var moveY = (Math.random() * 150) - 75; // Moves more up or down
+                var newLeft = Math.min(window.innerWidth - noButton.offsetWidth, Math.max(0, currentLeft + moveX));
+                var newTop = Math.min(window.innerHeight - noButton.offsetHeight - 100, Math.max(100, currentTop + moveY));
+                noButton.style.left = newLeft + "px";
+                noButton.style.top = newTop + "px";
+                showMessage("Oops! looks like the button dodged just in time");
+            }
+        }
+
+        function handleYesClick() {
+            var yesButton = document.getElementById("yesButton");
+            yesButtonClicked++;
+
+            if (yesButtonClicked === 1) {
+                // Change button text to "Biztos?"
+                yesButton.innerText = "Biztos?";
+            } else if (yesButtonClicked === 2) {
+                // Show "Yippiiiiiii" message and hide the button
+                showMessage("Yippiiiiiii");
+                yesButton.style.display = "none"; // Hide the button
+            }
         }
     </script>
 </head>
 <body>
     <h1>Will you be my valentine pookie?</h1>
     <div id="notification"></div>
-    <button id="yesButton" onclick="showMessage('You clicked Yes!')">Yes</button>
+    <button id="yesButton" onclick="handleYesClick()">Yes</button>
     <button id="noButton" onclick="moveNoButton()">No</button>
 
     <!-- Image Section -->
@@ -76,4 +103,3 @@
     </div>
 </body>
 </html>
-
